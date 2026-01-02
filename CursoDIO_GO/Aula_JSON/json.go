@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strconv"
 )
@@ -29,17 +30,21 @@ func main() {
 	
 	jsonFile, err := os.Open("usuarios.json")
 	if err != nil {
-		fmt.Println("erro")
-
+		log.Fatalf("Erro ao abrir arquivo: %v\n", err)
 	}
-	fmt.Println("Arquivo aberto com sucesso")
 	defer jsonFile.Close()
 
-	byteValue, _ := io.ReadAll(jsonFile)
+	byteValue, err := io.ReadAll(jsonFile)
+	if err != nil {
+		log.Fatalf("Erro ao ler arquivo: %v\n", err)
+	}
 
 	var usuarios Usuarios
 
-	json.Unmarshal(byteValue, &usuarios)
+	err = json.Unmarshal(byteValue, &usuarios)
+	if err != nil {
+		log.Fatalf("Erro ao fazer parse do JSON: %v\n", err)
+	}
 
 	for i := 0; i < len(usuarios.Usuarios); i++ {
 		fmt.Println(usuarios.Usuarios[i].Nome)
