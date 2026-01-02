@@ -1,0 +1,22 @@
+{
+  "usuarios ": [
+    {
+      "nome": "Pamela",
+      "idade": 25,
+      "sociais": {
+        "facebook": "fb.com/pamela",
+        "twitter": "@pamela"
+      },
+      "habilidades": ["JavaScript", "React", "Node.js"]
+    },
+    {
+      "nome": "Rafael",
+      "idade": 30,
+      "sociais": {
+        "facebook": "fb.com/rafael",
+        "twitter": "@rafael"
+      },
+      "habilidades": ["Python", "Django", "Machine Learning"]
+    }
+  ]
+}
