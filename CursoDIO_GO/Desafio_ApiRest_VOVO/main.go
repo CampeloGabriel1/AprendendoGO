@@ -25,7 +25,7 @@ type Endereco struct {
 	CEP  string `json:"CEP"`
 }
 
-var pessoas []Pessoa
+var pessoas = make([]Pessoa, 0)
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Hello World!")
@@ -34,7 +34,7 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 
 func GetPeopleHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	json.NewEncoder(w).Encode(pessoas)
 }
 
@@ -50,6 +50,8 @@ func CreatePeopleHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
+
+	
 
 	// Validações simples
 	if pessoa.Nome == "" || pessoa.Sobrenome == "" {
